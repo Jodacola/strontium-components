@@ -1,0 +1,95 @@
+{
+  "name": "react-strontium-components",
+  "version": "0.1.0",
+  "description": "",
+  "main": "dist/lib.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "types": "dist/lib.d.ts",
+  "scripts": {
+    "prepare": "npm run build",
+    "build": "tsc && rm -rf ./dist/lib ./dist/sass && cp -r ./src/sass ./dist/sass",
+    "test": "jest --no-cache"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jodacola/strontium-components.git"
+  },
+  "files": [
+    "dist",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
+  "author": "Josh Coulter",
+  "bugs": {
+    "url": "https://github.com/Jodacola/strontium-components/issues"
+  },
+  "homepage": "https://github.com/Jodacola/strontium-components#readme",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.2.3",
+    "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/polyfill": "^7.2.5",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.1.0",
+    "@types/enzyme": "^3.1.15",
+    "@types/enzyme-adapter-react-16": "^1.0.3",
+    "@types/jest": "^23.3.13",
+    "@types/react": "^16.7.20",
+    "@types/react-dom": "^16.0.11",
+    "@types/react-test-renderer": "^16.0.3",
+    "@types/bootstrap": "^4.2.0",
+    "@types/jquery": "^3.3.29",
+    "@types/react-bootstrap": "0.32.15",
+    "@types/react-transition-group": "^2.0.15",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.7.1",
+    "jest": "^23.6.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-test-renderer": "^16.7.0",
+    "ts-jest": "^23.10.5",
+    "typescript": "^3.2.4"
+  },
+  "dependencies": {
+    "react-strontium": "Jodacola/strontium#cleanup_and_dep_removal",
+    "spin.js": "^4.0.0"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "ts",
+      "tsx"
+    ],
+    "transform": {
+      "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
+    },
+
+    "modulePaths": [
+      "<rootDir>/node_modules",
+      "<rootDir>/lib"
+    ],
+    "testMatch": [
+      "<rootDir>/spec/**/*.(js|ts|tsx)"
+    ],
+    "verbose": true,
+    "testURL": "http://www.roadtonowhere.com/path1/path2/?id=someId&key1=value1&key2=value2",
+    "globals": {
+      "babel-jest": {
+        "useBabelrc": true
+      },
+      "ts-jest": {
+        "useBabelrc": true,
+        "tsConfigFile": "tsconfig.json"
+      }
+    }
+  }
+}
