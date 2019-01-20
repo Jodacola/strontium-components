@@ -46,7 +46,7 @@ export default class WaitSpinner extends SrUiComponent<{ className?: string, key
         }
         return (
             <div className={this.classes("wait-spinner-container", this.props.className)}>
-                <div className="wait-spinner" style={style} ref={this.refHandler}>{this.localize(this.props.message)}</div>
+                <div className="wait-spinner" style={style} ref={this.refHandler}>{this.props.message}</div>
             </div>);
     }
 }
