@@ -2,11 +2,11 @@
   "name": "react-strontium-components",
   "version": "0.1.0",
   "description": "",
-  "main": "dist/lib.js",
+  "main": "dist/index.js",
   "directories": {
-    "lib": "lib"
+    "src": "src"
   },
-  "types": "dist/lib.d.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
     "prepare": "npm run build",
     "build": "rm -rf ./dist && tsc && cp -r ./src/sass ./dist/sass",
