@@ -9,7 +9,7 @@
   "types": "dist/lib.d.ts",
   "scripts": {
     "prepare": "npm run build",
-    "build": "tsc && rm -rf ./dist/lib ./dist/sass && cp -r ./src/sass ./dist/sass",
+    "build": "rm -rf ./dist && tsc && cp -r ./src/sass ./dist/sass",
     "test": "jest --no-cache"
   },
   "repository": {
