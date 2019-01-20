@@ -44,7 +44,7 @@ export default class WaitSpinner extends SrUiComponent {
             style.height = this.props.fillheight;
         }
         return (React.createElement("div", { className: this.classes("wait-spinner-container", this.props.className) },
-            React.createElement("div", { className: "wait-spinner", style: style, ref: this.refHandler }, this.localize(this.props.message))));
+            React.createElement("div", { className: "wait-spinner", style: style, ref: this.refHandler }, this.props.message)));
     }
 }
 //# sourceMappingURL=WaitSpinner.js.map
