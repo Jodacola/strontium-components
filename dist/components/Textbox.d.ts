@@ -14,7 +14,6 @@ export interface ITextboxProps {
     controlled?: boolean;
     autoset?: boolean;
     disabled?: boolean;
-    tooltip?: string;
     changeDelay?: number;
 }
 export default class Textbox extends SrUiComponent<ITextboxProps, {
@@ -32,7 +31,6 @@ export default class Textbox extends SrUiComponent<ITextboxProps, {
     onComponentMounted(): void;
     onNewProps(props: ITextboxProps): void;
     performRender(): JSX.Element;
-    setRefAndTooltip(r: HTMLInputElement | HTMLTextAreaElement): void;
     onKeyPressed(e: React.KeyboardEvent<any>): void;
     onKeyDown(e: React.KeyboardEvent<any>): void;
     changed(e: any): void;

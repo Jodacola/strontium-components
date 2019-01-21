@@ -1,17 +1,19 @@
 ﻿import * as React from "react";
 import WaitSpinner from "./WaitSpinner";
-import Alert from "./Alert";
 import { LoadStates, SrUiComponent, IApiLoadingState } from "react-strontium";
 
 export interface ILoadIndicatorProps {
-    alertClassName?: string,
     spinClassName?: string,
     state: LoadStates,
     loadingMessage?: string,
-    errorMessage?: string
+    errorMessage?: string,
+    successClass?: string,
+    errorClass?: string,
+    successBuilder?: () => React.ReactNode,
+    errorBuilder?: () => React.ReactNode
 }
 
-export default class LoadIndicator extends SrUiComponent<{ alertClassName?: string, spinClassName?: string, state: LoadStates, loadingMessage?: string, errorMessage?: string }, IApiLoadingState> {
+export default class LoadIndicator extends SrUiComponent<ILoadIndicatorProps, IApiLoadingState> {
     initialState() {
         return {
             loadState: this.props.state,
@@ -31,14 +33,15 @@ export default class LoadIndicator extends SrUiComponent<{ alertClassName?: stri
     }
 
     performRender() {
-        var content: JSX.Element = null;
+        var content: React.ReactNode = null;
         if (this.state.loadState === LoadStates.Succeeded && this.state.successMessage) {
-            content = <Alert key="load-success" type="success" classes={this.classes("load", this.props.alertClassName)}>{this.state.successMessage}</Alert>;
+            content = (this.props.successBuilder ? this.props.successBuilder() : <p key="load-success" className={this.props.successClass || 'load-indicator load-success'}>{this.state.successMessage}</p>);
         } else if (this.state.loadState === LoadStates.Failed && this.state.errorMessage) {
-            content = <Alert key="load-error" type="danger" classes={this.classes("load", this.props.alertClassName)}>{this.state.errorMessage}</Alert>;
+            content = (this.props.successBuilder ? this.props.successBuilder() : <p key="load-error" className={this.props.errorClass || 'load-indicator load-error'}>{this.state.successMessage}</p>);
         } else if (this.state.loadState === LoadStates.Loading) {
             content = <WaitSpinner className={this.props.spinClassName} key="load-loading" message={this.state.loadingMessage} />;
         }
+
         return content;
     }
 }

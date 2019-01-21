@@ -10,7 +10,7 @@ export default class Clear extends SrUiComponent {
             margin: '0 !important',
             lineHeight: '0 !important'
         };
-        return (React.createElement("div", { className: "clear-fix", style: style }));
+        return (React.createElement("div", { style: style }));
     }
 }
 //# sourceMappingURL=Clear.js.map

@@ -6,10 +6,13 @@ export default class ErrorBoundary extends SrUiComponent {
     componentDidCatch(error, info) {
         this.setState({ hasError: true, error: error, info: info });
         Log.e(this, 'Error within component', { error: error, info: info });
+        if (this.props.onError) {
+            this.props.onError(error, info);
+        }
     }
     performRender() {
         if (this.state.hasError) {
-            return null;
+            return this.props.showOnError;
         }
         return this.props.children;
     }

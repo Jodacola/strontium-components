@@ -1,6 +1,10 @@
 /// <reference types="react" />
 import { SrUiComponent } from "react-strontium";
-export default class ErrorBoundary extends SrUiComponent<{}, {
+interface IErrorBoundaryProps {
+    onError?: (error: any, info: any) => void;
+    showOnError?: React.ReactNode;
+}
+export default class ErrorBoundary extends SrUiComponent<IErrorBoundaryProps, {
     hasError: boolean;
     error: any;
     info: any;
@@ -11,5 +15,6 @@ export default class ErrorBoundary extends SrUiComponent<{}, {
         info: any;
     };
     componentDidCatch(error: any, info: any): void;
-    performRender(): JSX.Element;
+    performRender(): import("react").ReactNode;
 }
+export {};

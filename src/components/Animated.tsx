@@ -19,7 +19,7 @@ export default class Animated extends SrUiComponent<IAnimationProps, {}> {
                 <TransitionGroup.CSSTransition
                     key="animated-entry"
                     classNames={this.className()}
-                    in={true}
+                    in={this.props.in}
                     appear={this.props.appear === undefined ? true : this.props.appear}
                     exit={this.props.leave === undefined ? true : this.props.leave}
                     enter={this.props.enter === undefined ? true : this.props.enter}

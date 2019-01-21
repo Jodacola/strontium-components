@@ -12,6 +12,6 @@ export default class Clear extends SrUiComponent<{}, {}>{
             lineHeight: '0 !important'
         };
 
-        return (<div className="clear-fix" style={style} />);
+        return (<div style={style} />);
     }
 }

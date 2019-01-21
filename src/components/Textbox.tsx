@@ -15,7 +15,6 @@ export interface ITextboxProps {
     controlled?: boolean;
     autoset?: boolean;
     disabled?: boolean;
-    tooltip?: string;
     changeDelay?: number;
 }
 
@@ -73,7 +72,7 @@ export default class Textbox extends SrUiComponent<ITextboxProps, { value: strin
         return (
             <input
                 disabled={this.props.disabled}
-                ref={(r) => { this.setRefAndTooltip(r); }}
+                ref={this.refHandler}
                 type="text"
                 className={this.props.className}
                 onChange={(e) => { this.changed(e); }}
@@ -82,13 +81,6 @@ export default class Textbox extends SrUiComponent<ITextboxProps, { value: strin
                 placeholder={this.props.placeholder}
                 defaultValue={this.controlled ? undefined : this.state.value}
                 value={this.controlled ? this.state.value : undefined} />);
-    }
-
-    setRefAndTooltip(r: HTMLInputElement | HTMLTextAreaElement) {
-        this.inputRef = r;
-        if (r) {
-            $(r).tooltip({ 'trigger': 'focus', placement: 'bottom', 'title': this.props.tooltip, 'html': true });
-        }
     }
 
     onKeyPressed(e: React.KeyboardEvent<any>) {
@@ -123,15 +115,16 @@ export default class Textbox extends SrUiComponent<ITextboxProps, { value: strin
     changed(e: any) {
         if (this.controlled && this.props.autoset) {
             this.set({ value: e.target.value });
+            if (this.props.changeDelay && this.props.changeDelay > 0) {
+                this.deferred(() => {
+                    this.notifyChanged(this.state.value);
+                })
+                
+                return;
+            }
         }
 
-        if (this.props.changeDelay && this.props.changeDelay > 0) {
-            this.deferred(() => {
-                this.notifyChanged(this.state.value);
-            })
-        } else {
-            this.notifyChanged(e.target.value);
-        }
+        this.notifyChanged(e.target.value);
     }
 
     notifyChanged(value: string) {

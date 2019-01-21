@@ -34,13 +34,7 @@ export default class Textbox extends SrUiComponent {
         if (this.props.textarea === true) {
             return (React.createElement("textarea", { disabled: this.props.disabled, ref: this.refHandler, className: this.props.className, onChange: (e) => { this.changed(e); }, onKeyDown: (e) => { this.onKeyDown(e); }, onKeyPress: (e) => { this.onKeyPressed(e); }, placeholder: this.props.placeholder, defaultValue: this.controlled ? undefined : this.state.value, value: this.controlled ? this.state.value : undefined }));
         }
-        return (React.createElement("input", { disabled: this.props.disabled, ref: (r) => { this.setRefAndTooltip(r); }, type: "text", className: this.props.className, onChange: (e) => { this.changed(e); }, onKeyDown: (e) => { this.onKeyDown(e); }, onKeyPress: (e) => { this.onKeyPressed(e); }, placeholder: this.props.placeholder, defaultValue: this.controlled ? undefined : this.state.value, value: this.controlled ? this.state.value : undefined }));
-    }
-    setRefAndTooltip(r) {
-        this.inputRef = r;
-        if (r) {
-            $(r).tooltip({ 'trigger': 'focus', placement: 'bottom', 'title': this.props.tooltip, 'html': true });
-        }
+        return (React.createElement("input", { disabled: this.props.disabled, ref: this.refHandler, type: "text", className: this.props.className, onChange: (e) => { this.changed(e); }, onKeyDown: (e) => { this.onKeyDown(e); }, onKeyPress: (e) => { this.onKeyPressed(e); }, placeholder: this.props.placeholder, defaultValue: this.controlled ? undefined : this.state.value, value: this.controlled ? this.state.value : undefined }));
     }
     onKeyPressed(e) {
         if (this.props.textarea !== true &&
@@ -70,15 +64,14 @@ export default class Textbox extends SrUiComponent {
     changed(e) {
         if (this.controlled && this.props.autoset) {
             this.set({ value: e.target.value });
+            if (this.props.changeDelay && this.props.changeDelay > 0) {
+                this.deferred(() => {
+                    this.notifyChanged(this.state.value);
+                });
+                return;
+            }
         }
-        if (this.props.changeDelay && this.props.changeDelay > 0) {
-            this.deferred(() => {
-                this.notifyChanged(this.state.value);
-            });
-        }
-        else {
-            this.notifyChanged(e.target.value);
-        }
+        this.notifyChanged(e.target.value);
     }
     notifyChanged(value) {
         if (this.props.onChange) {
