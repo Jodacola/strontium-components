@@ -1,4 +1,3 @@
-export { default as Animated } from "./components/Animated";
 export { default as Clear } from "./components/Clear";
 export { default as ErrorBoundary } from "./components/ErrorBoundary";
 export { default as LoadIndicator } from "./components/LoadIndicator";
