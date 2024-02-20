@@ -65,9 +65,7 @@ export default class Textbox extends SrUiComponent {
         if (this.controlled && this.props.autoset) {
             this.set({ value: e.target.value });
             if (this.props.changeDelay && this.props.changeDelay > 0) {
-                this.deferred(() => {
-                    this.notifyChanged(this.state.value);
-                });
+                this.deferred(() => { this.notifyChanged(this.state.value); }, 0, 'tb-changed');
                 return;
             }
         }

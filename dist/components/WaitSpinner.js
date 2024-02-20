@@ -1,6 +1,7 @@
 import { Spinner } from "spin.js";
 import * as React from "react";
 import { SrUiComponent } from "react-strontium";
+import classNames from "classnames";
 export default class WaitSpinner extends SrUiComponent {
     constructor() {
         super(...arguments);
@@ -43,7 +44,7 @@ export default class WaitSpinner extends SrUiComponent {
         if (this.props.fillheight != null) {
             style.height = this.props.fillheight;
         }
-        return (React.createElement("div", { className: this.classes("wait-spinner-container", this.props.className) },
+        return (React.createElement("div", { className: classNames("wait-spinner-container", this.props.className) },
             React.createElement("div", { className: "wait-spinner", style: style, ref: this.refHandler }, this.props.message)));
     }
 }

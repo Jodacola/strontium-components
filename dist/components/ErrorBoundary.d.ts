@@ -1,9 +1,9 @@
-/// <reference types="react" />
+import React from "react";
 import { SrUiComponent } from "react-strontium";
-interface IErrorBoundaryProps {
+type IErrorBoundaryProps = {
     onError?: (error: any, info: any) => void;
     showOnError?: React.ReactNode;
-}
+} & React.PropsWithChildren;
 export default class ErrorBoundary extends SrUiComponent<IErrorBoundaryProps, {
     hasError: boolean;
     error: any;
@@ -15,6 +15,6 @@ export default class ErrorBoundary extends SrUiComponent<IErrorBoundaryProps, {
         info: any;
     };
     componentDidCatch(error: any, info: any): void;
-    performRender(): import("react").ReactNode;
+    performRender(): React.ReactNode;
 }
 export {};

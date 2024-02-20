@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import * as React from "react";
 import { SrUiComponent } from "react-strontium";
 export default class WaitSpinner extends SrUiComponent<{
     className?: string;
@@ -14,5 +14,5 @@ export default class WaitSpinner extends SrUiComponent<{
     private refHandler;
     private spinup;
     onComponentWillUnmount(): void;
-    performRender(): JSX.Element;
+    performRender(): React.JSX.Element;
 }

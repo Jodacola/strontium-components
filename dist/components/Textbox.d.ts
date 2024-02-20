@@ -30,7 +30,7 @@ export default class Textbox extends SrUiComponent<ITextboxProps, {
     clear(): void;
     onComponentMounted(): void;
     onNewProps(props: ITextboxProps): void;
-    performRender(): JSX.Element;
+    performRender(): React.JSX.Element;
     onKeyPressed(e: React.KeyboardEvent<any>): void;
     onKeyDown(e: React.KeyboardEvent<any>): void;
     changed(e: any): void;
